@@ -8,7 +8,7 @@ export const Countdown: React.FC = () => {
     if (timerRef.current.timerId !== null) {
       clearInterval(timerRef.current.timerId);
     }
-      
+
     timerRef.current.timerId = setInterval(() => {
       setCounter((current) => current - 1);
     }, 1000);

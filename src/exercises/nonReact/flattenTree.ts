@@ -11,7 +11,7 @@ export const flattenTree = (tree: TreeNode) => {
     const node = nodes.shift();
 
     if (!node?.value) {
-      throw new Error('Every node should have value');
+      throw new Error("Every node should have value");
     }
 
     if (node?.children?.length) {

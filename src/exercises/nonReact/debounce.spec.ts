@@ -46,7 +46,7 @@ describe("debounce", () => {
     const contextObject = {
       value: "Hello, World!",
       fn: function () {
-        return this.value = 'changed value';
+        this.value = "changed value";
       },
     };
 

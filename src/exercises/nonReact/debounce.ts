@@ -10,4 +10,4 @@ export const debounce = (fn: Function, delay: number) => {
       fn(...args);
     }, delay);
   };
-}
+};

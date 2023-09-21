@@ -1,3 +1,35 @@
 {
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "standard",
+      "standard-jsx",
+      "standard-react",
+      "prettier"
+    ],
+    "plugins": [
+      "jsx-a11y",
+      "prettier"                  // Add prettier to plugins
+    ],
+    "rules": {
+      "prettier/prettier": "error", // Flags prettier errors as ESLint errors
+      "comma-dangle": [
+        "error",
+        {
+          "arrays": "always-multiline",
+          "objects": "always-multiline",
+          "imports": "always-multiline",
+          "exports": "always-multiline",
+          "functions": "always-multiline"
+        }
+      ],
+      "no-undef": "off",
+      "react/react-in-jsx-scope": "off",
+      "react/jsx-pascal-case": "off",
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": ["off", {
+        "ignoreRestSiblings": true
+      }]
+    }
+  }
   
-}

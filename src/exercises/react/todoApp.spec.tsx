@@ -1,42 +1,43 @@
 import React from "react";
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, screen } from "@testing-library/react";
 import { TodoApp } from "./todoApp";
 
 describe("TodoApp", () => {
   it("renders the todo input and add button", () => {
-    const { getByTestId } = render(<TodoApp />);
-    expect(getByTestId("todo-input")).toBeInTheDocument();
-    expect(getByTestId("add-todo-button")).toBeInTheDocument();
+    render(<TodoApp />);
+    expect(screen.getByTestId("todo-input")).toBeInTheDocument();
+    expect(screen.getByTestId("add-todo-button")).toBeInTheDocument();
   });
 
   it("adds a new todo when the add button is clicked", () => {
-    const { getByTestId } = render(<TodoApp />);
-    const input = getByTestId("todo-input");
-    const button = getByTestId("add-todo-button");
+    render(<TodoApp />);
+    const input = screen.getByTestId("todo-input");
+    const button = screen.getByTestId("add-todo-button");
 
     fireEvent.change(input, { target: { value: "New Todo" } });
     fireEvent.click(button);
 
-    expect(getByTestId("todo-list").textContent).toContain("New Todo");
+    expect(screen.getByText("New Todo")).toBeInTheDocument();
   });
 
   it("clears the input after adding a todo", () => {
-    const { getByTestId } = render(<TodoApp />);
-    const input = getByTestId("todo-input") as HTMLInputElement;
-    const button = getByTestId("add-todo-button");
+    render(<TodoApp />);
+    const input = screen.getByTestId("todo-input");
+    const button = screen.getByTestId("add-todo-button");
 
     fireEvent.change(input, { target: { value: "Another Todo" } });
     fireEvent.click(button);
 
-    expect(input.value).toBe("");
+    expect((input as HTMLInputElement).value).toBe(""); // Using type assertion to access value property
   });
 
   it("does not add an empty todo", () => {
-    const { getByTestId } = render(<TodoApp />);
-    const button = getByTestId("add-todo-button");
+    render(<TodoApp />);
+    const button = screen.getByTestId("add-todo-button");
 
     fireEvent.click(button);
 
-    expect(getByTestId("todo-list").children.length).toBe(0);
+    const todoList = screen.getByTestId("todo-list");
+    expect(todoList).not.toHaveTextContent(/./);
   });
 });

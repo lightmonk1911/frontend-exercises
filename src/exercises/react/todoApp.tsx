@@ -18,7 +18,7 @@ export const TodoApp: React.FC = () => {
     setTodos((prev) =>
       prev.concat([
         { name: newTaskName, id: Date.now().toFixed(5), completed: false },
-      ])
+      ]),
     );
 
     setNewTaskName("");
@@ -32,7 +32,7 @@ export const TodoApp: React.FC = () => {
         }
 
         return task;
-      })
+      }),
     );
   };
 
